@@ -1,3 +1,4 @@
+
 * {
   box-sizing: border-box;
 }
@@ -9,7 +10,7 @@
 
 h1 {
   text-align: center;
-  font-size: 20;
+  font-size: 20px;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
@@ -21,13 +22,36 @@ header {
   align-items: center;
   gap: 10px;
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 50px;
+  margin-top: 30px;
+}
+
+.content {
+  max-width: 300px;
+}
+
+.big-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(25%, 1fr));
+  justify-content: space-around;
+}
+
+@media (max-width: 1030px) {
+  .big-container {
+    grid-template-columns: repeat(auto-fill, minmax(50%, 1fr)); /* Two columns on medium screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .big-container {
+    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr)); /* Single column on small screens */
+  }
 }
 
 button {
@@ -48,11 +72,40 @@ button {
   -webkit-user-select: none;
   touch-action: manipulation;
   border: 3px solid rgba(190, 0, 0, 0.736);
+  width: 100px;
 }
 
 button:hover {
   box-shadow: rgba(187, 44, 44, 0.35) 0 -25px 18px -14px inset,rgba(187, 44, 44, 0.25) 0 1px 2px,rgba(187, 44, 44, 0.25) 0 2px 4px,rgba(187, 44, 44, 0.25) 0 4px 8px,rgba(187, 44, 44, 0.25) 0 8px 16px,rgba(187, 44, 44, 0.25) 0 16px 32px;
   transform: scale(1.05) rotate(-1deg);
+}
+
+button:active {
+  box-shadow: rgba(100, 21, 21, 0.35) 0 -25px 18px -14px inset,rgba(100, 21, 21, 0.35) 0 1px 2px,rgba(100, 21, 21, 0.35) 0 2px 4px,rgba(100, 21, 21, 0.35) 0 4px 8px,rgba(100, 21, 21, 0.35) 0 8px 16px,rgba(100, 21, 21, 0.35) 0 16px 32px;
+}
+
+.hideMemesDiv {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 35px;
+}
+
+#hideMemesButton {
+  width: 120px;
+  font-size: 10px;
+  height: auto;
+  background-color: rgb(103, 96, 96);
+  border: 3px solid rgba(22, 22, 22, 0.736);
+  box-shadow: rgba(86, 86, 86, 0.2) 0 -25px 18px -14px inset,rgba(86, 86, 86, 0.2) 0 1px 2px,rgba(86, 86, 86, 0.2) 0 2px 4px,rgba(86, 86, 86, 0.2) 0 4px 8px,rgba(86, 86, 86, 0.2) 0 8px 16px,rgba(86, 86, 86, 0.2) 0 16px 32px;
+}
+
+#hideMemesButton:hover {
+  box-shadow: rgba(67, 67, 67, 0.35) 0 -25px 18px -14px inset,rgba(67, 67, 67, 0.35) 0 1px 2px,rgba(67, 67, 67, 0.35) 0 2px 4px,rgba(67, 67, 67, 0.35) 0 4px 8px,rgba(67, 67, 67, 0.35) 0 8px 16px,rgba(67, 67, 67, 0.35) 0 16px 32px;
+  transform: scale(1.05) rotate(-1deg);
+}
+
+#hideMemesButton:active {
+  box-shadow: rgba(25, 25, 25, 0.2) 0 -25px 18px -14px inset,rgba(25, 25, 25, 0.2) 0 1px 2px,rgba(25, 25, 25, 0.2) 0 2px 4px,rgba(25, 25, 25, 0.2) 0 4px 8px,rgba(25, 25, 25, 0.2) 0 8px 16px,rgba(25, 25, 25, 0.2) 0 16px 32px;
 }
 
 .meme-container {
@@ -62,12 +115,13 @@ button:hover {
 }
 
 .meme-container img {
-    max-width: 400px;  /* Set maximum width */
-    max-height: 500px; /* Set maximum height */
-    width: 100%; /* Ensure the image takes up the available width */
-    height: auto; /* Maintain aspect ratio */
-    object-fit: cover; /* Ensure the image covers the area */
-    margin-top: 100px;
+    max-width: 250px;
+    min-width: 250px;
+    min-height: 200px;
+    width: auto;
+    height: 100%;
+    object-fit: cover;
+    margin-top: 20px;
 }
 
 .hidden {
