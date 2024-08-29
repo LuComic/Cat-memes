@@ -17,34 +17,47 @@ const catMemes = [
   'silly-cycle.jpeg',
   'so-silly-car.jpeg',
   'so-sleepy-car.jpeg',
+  // Add more filenames as needed
 ];
-
-// Function to generate a random integer between min and max (inclusive)
 function getRandomIndex(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-// Function to display a random cat meme
 function showRandomCatMeme(event) {
   const button = event.currentTarget;
   const memeContainer = button.closest('.content').querySelector('.memeDisplay');
-  
+
   const memeIndex = getRandomIndex(0, catMemes.length - 1);
   const randomMeme = catMemes[memeIndex];
   const memePath = `cat-memes/${randomMeme}`;
 
-  // Show the image when the button is clicked
   memeContainer.classList.remove('hidden');
-
-  // Set the source of the image
   memeContainer.src = memePath;
+
+  const containerIndex = Array.from(document.querySelectorAll('.content')).indexOf(button.closest('.content'));
+  localStorage.setItem(`meme-${containerIndex}`, memePath);
 }
 
-// Function to hide all memes
-function hideAllMemes() {
-  const memeDisplays = document.querySelectorAll('.memeDisplay');
-  memeDisplays.forEach(meme => {
-    meme.classList.add('hidden'); // Add the 'hidden' class to hide the image
+function loadMemesFromLocalStorage() {
+  const contents = document.querySelectorAll('.content');
+  contents.forEach((content, index) => {
+    const memePath = localStorage.getItem(`meme-${index}`);
+    if (memePath) {
+      const memeContainer = content.querySelector('.memeDisplay');
+      memeContainer.src = memePath;
+      memeContainer.classList.remove('hidden');
+    }
+  });
+}
+
+// Function to reset the memes
+function resetMemes() {
+  localStorage.clear(); // Clear local storage
+  const contents = document.querySelectorAll('.content');
+  contents.forEach((content) => {
+    const memeContainer = content.querySelector('.memeDisplay');
+    memeContainer.src = ""; // Clear the image source
+    memeContainer.classList.add('hidden'); // Hide the image
   });
 }
 
@@ -54,6 +67,9 @@ randomButtons.forEach(button => {
   button.addEventListener('click', showRandomCatMeme);
 });
 
-// Add event listener for the hide button
-const hideButton = document.getElementById('hideMemesButton');
-hideButton.addEventListener('click', hideAllMemes);
+// Add event listener to the reset button
+const resetButton = document.getElementById('resetButton');
+resetButton.addEventListener('click', resetMemes);
+
+// Load any saved memes when the page loads
+window.addEventListener('load', loadMemesFromLocalStorage);
