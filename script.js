@@ -17,7 +17,6 @@ const catMemes = [
   'silly-cycle.jpeg',
   'so-silly-car.jpeg',
   'so-sleepy-car.jpeg',
-  // Add more filenames as needed
 ];
 
 // Function to generate a random integer between min and max (inclusive)
@@ -26,20 +25,35 @@ function getRandomIndex(min, max) {
 }
 
 // Function to display a random cat meme
-function showRandomCatMeme() {
+function showRandomCatMeme(event) {
+  const button = event.currentTarget;
+  const memeContainer = button.closest('.content').querySelector('.memeDisplay');
+  
   const memeIndex = getRandomIndex(0, catMemes.length - 1);
   const randomMeme = catMemes[memeIndex];
-  const memePath = `cat-memes/${randomMeme}`; // Assuming 'cat-memes' is the folder name
+  const memePath = `cat-memes/${randomMeme}`;
 
-  const memeDisplay = document.getElementById('memeDisplay');
-
-  // Show image while it is loading
-  memeDisplay.classList.remove('hidden');
+  // Show the image when the button is clicked
+  memeContainer.classList.remove('hidden');
 
   // Set the source of the image
-  memeDisplay.src = memePath;
+  memeContainer.src = memePath;
 }
 
-// Add event listener to the button
-const randomButton = document.getElementById('randomButton');
-randomButton.addEventListener('click', showRandomCatMeme);
+// Function to hide all memes
+function hideAllMemes() {
+  const memeDisplays = document.querySelectorAll('.memeDisplay');
+  memeDisplays.forEach(meme => {
+    meme.classList.add('hidden'); // Add the 'hidden' class to hide the image
+  });
+}
+
+// Add event listeners to all buttons
+const randomButtons = document.querySelectorAll('.randomButton');
+randomButtons.forEach(button => {
+  button.addEventListener('click', showRandomCatMeme);
+});
+
+// Add event listener for the hide button
+const hideButton = document.getElementById('hideMemesButton');
+hideButton.addEventListener('click', hideAllMemes);
