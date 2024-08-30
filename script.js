@@ -1,10 +1,12 @@
 // Define an array of cat meme file names (assuming they are in a folder named 'cat-memes')
 const catMemes = [
   '3-interesting-cat.jpeg',
+  'businessCar.jpeg',
   'bye-fart-car.jpeg',
   'da-hell-car.jpeg',
   'disturbed-car.jpeg',
   'dont-know-car.jpeg',
+  'ermWhatTheFreak.jpg',
   'good-morning-car.jpeg',
   'holdin-hands-car.jpeg',
   'mewing-car.jpeg',
@@ -17,6 +19,7 @@ const catMemes = [
   'silly-cycle.jpeg',
   'so-silly-car.jpeg',
   'so-sleepy-car.jpeg',
+  'soapyCar.jpeg'
   // Add more filenames as needed
 ];
 function getRandomIndex(min, max) {
