@@ -42,7 +42,7 @@ header {
   justify-content: space-around;
 }
 
-@media (max-width: 1030px) {
+@media (max-width: 1024px) {
   .big-container {
     grid-template-columns: repeat(auto-fill, minmax(50%, 1fr)); /* Two columns on medium screens */
   }
